@@ -4,7 +4,7 @@ const {UserInputError, AuthenticationError}=require('apollo-server')
 module.exports={
     Query:{
          getComments:async(_,{postId})=>{
-             const post=postId;
+             
             try {
                 const comment=await Comment.find({post:postId}).sort({createdDate:-1});
                 if(comment){
