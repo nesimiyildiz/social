@@ -6,12 +6,14 @@ module.exports={
         async getPosts(){
             try{
                 const posts=await Post.find().sort({createdDate:-1});
+                                            
                 if(posts){
                     return posts;
+                  
                 }else{
                     throw new Error("Post")
                 }
-                
+              
             }catch(error){
                 throw new Error(error)
             }
@@ -48,7 +50,7 @@ module.exports={
                 username:user.username,
                 createdDate:new Date().toISOString(),
             })
-           
+     
             const post=await newPost.save();
             context.pubsub.publish('NEW_POST',{
                 newPost:post
@@ -75,7 +77,8 @@ module.exports={
             const {username}=AuthControl(context);
 
             const post=await Post.findById(postId);
-
+          
+           console.log(filter);
             if(post){
                 if(post.likes.find(b=>b.username===username)){
 
@@ -87,8 +90,8 @@ module.exports={
                     })
                 }
 
-                await post.save();
-                return post;
+                // await post.save();
+                // return post;
             }else{
                 throw new UserInputError('Post Bulunamadı')
             }

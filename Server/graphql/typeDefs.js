@@ -57,6 +57,7 @@ type Medias {
     createdDate:String
 }
 
+
 type Friend{
     id:ID!,
     createdDate:String!,
@@ -84,6 +85,12 @@ type IpAdress{
     username:String!,
     createdDate:String!,
     ipAdress:String!
+}
+
+type View {
+    id:ID!,
+    username:String!,
+    createdDate:String!
 }
 
 #Inputs
@@ -125,6 +132,9 @@ type Query {
     #IpAdresses
     getAllIp:[IpAdress!]
     getUserAllIp(userId:String!):[IpAdress!]
+
+    getViewsCount(mediaId:String):String!
+    getViews(mediaId:String):[View!]
 
 },
 
@@ -168,7 +178,10 @@ type Mutation{
     deleteAlbum(userId:String!,albumId:ID!):String!
 
     #Ip Adress
-    saveIp(userId:String!,ipAdress:String):IpAdress
+    saveIp(userId:String!,ipAdress:String):IpAdress!
+
+    #View
+    createView(userId:String!,mediaId:String!):View!
 }
 
 #Subscriptions

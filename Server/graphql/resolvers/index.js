@@ -7,6 +7,7 @@ const locationResolvers=require('./locations');
 const friendResolvers=require('./friends');
 const albumResolvers=require('./albums');
 const ipResolvers=require('./ipAdresses');
+const viewResolvers=require('./views');
 module.exports={
     Post:{
         likesCount(parent){
@@ -24,7 +25,8 @@ module.exports={
         ...locationResolvers.Query,
         ...friendResolvers.Query,
         ...albumResolvers.Query,
-        ...ipResolvers.Query
+        ...ipResolvers.Query,
+        ...viewResolvers.Query
     },
     Mutation:{
         ...userResolvers.Mutation,
@@ -35,7 +37,8 @@ module.exports={
         ...locationResolvers.Mutation,
         ...friendResolvers.Mutation,
         ...albumResolvers.Mutation,
-        ...ipResolvers.Mutation
+        ...ipResolvers.Mutation,
+        ...viewResolvers.Mutation
     },
     Subscription:{
         ...postResolvers.Subscription,
