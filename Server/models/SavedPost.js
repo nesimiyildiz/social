@@ -1,6 +1,6 @@
 const {model,Schema}=require('mongoose')
 
-const savePost=new Schema({
+const savedPost=new Schema({
     createdDate:String,
     media:{
         type:Schema.Types.ObjectId,ref:'medias'
@@ -12,3 +12,5 @@ const savePost=new Schema({
     mediaId:String
 
 })
+
+module.exports=model('savedPost',savedPost)

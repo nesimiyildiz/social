@@ -93,6 +93,20 @@ type View {
     createdDate:String!
 }
 
+type SavedPost{
+    id:ID!,
+    createdDate:String!
+    mediaId:String!
+    username:String!
+}
+
+type Status{
+    id:ID!,
+    username:String!,
+    createdDate:String!,
+    lastLogindate:String!,
+    statu:Boolean
+}
 #Inputs
 input RegisterInput {
     username:String!,
@@ -133,9 +147,12 @@ type Query {
     getAllIp:[IpAdress!]
     getUserAllIp(userId:String!):[IpAdress!]
 
+    #Views
     getViewsCount(mediaId:String):String!
     getViews(mediaId:String):[View!]
 
+    #SavedPost
+    getUserSavedPost(userId:ID):[SavedPost!]
 },
 
 #Mutations
@@ -182,10 +199,22 @@ type Mutation{
 
     #View
     createView(userId:String!,mediaId:String!):View!
+
+    #SavedPost
+    savePost(userId:ID!,mediaId:ID!):SavedPost!
+    deleteSavedPost(userId:ID!,mediaId:String!):String!
+
+    #Status
+    setStatus(userId:ID!):Status!
+    changeStatus(userId:ID!):Status!
+
+
 }
 
 #Subscriptions
 type Subscription{
-    newPost:Post!
+    newPost:Post!,
+    getStatus:Status!
+   
 }
 `

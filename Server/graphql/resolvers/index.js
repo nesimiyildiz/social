@@ -8,10 +8,12 @@ const friendResolvers=require('./friends');
 const albumResolvers=require('./albums');
 const ipResolvers=require('./ipAdresses');
 const viewResolvers=require('./views');
+const savedPostResolvers=require('./saveposts')
+const statusResolvers=require('./status')
 module.exports={
     Post:{
         likesCount(parent){
-            console.log(parent);
+         
             return parent.likes.length
         },
         
@@ -26,7 +28,8 @@ module.exports={
         ...friendResolvers.Query,
         ...albumResolvers.Query,
         ...ipResolvers.Query,
-        ...viewResolvers.Query
+        ...viewResolvers.Query,
+        ...savedPostResolvers.Query
     },
     Mutation:{
         ...userResolvers.Mutation,
@@ -38,9 +41,12 @@ module.exports={
         ...friendResolvers.Mutation,
         ...albumResolvers.Mutation,
         ...ipResolvers.Mutation,
-        ...viewResolvers.Mutation
+        ...viewResolvers.Mutation,
+        ...savedPostResolvers.Mutation,
+        ...statusResolvers.Mutation
     },
     Subscription:{
         ...postResolvers.Subscription,
+        ...statusResolvers.Subscription,
     }
 }
