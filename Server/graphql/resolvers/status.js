@@ -1,7 +1,7 @@
 const { PubSub, UserInputError } = require('apollo-server');
 const Status=require('../../models/Status')
 const check=require('../../utils/check-auth')
-
+const pubsub=new PubSub;
 module.exports={
     Mutation:{
         setStatus:async(_,{userId},context)=>{
@@ -18,34 +18,39 @@ module.exports={
                     })
                     
                    const sta=await newStatus.save();
-                    context.pubsub.publish('GET_STATUS',{
+                    pubsub.publish('GET_STATUS',{
                         getStatus:sta
                     })
                     return sta;
                 }else{
-                    const newStatus={
-                        username:user.username,
-                        lastLogindate:new Date().toISOString(),
-                        statu:true,
-                        user:user.id
-                    }
-                    await status.updateOne(newStatus);
-                    context.pubsub.publish('GET_STATUS',{
-                        getStatus:status
+                    await Status.findOneAndUpdate({user:userId},{statu:true})
+                    const d=await Status.findOneAndUpdate({user:userId},{statu:true})
+                    pubsub.publish('GET_STATUS',{
+                        getStatus:d
                     })
-                    return status;
+                    return d;
+                    
                 }
             }
         },
-        changeStatus:async(_,{userId},context)=>{
+        logout:async(_,{userId},context)=>{
             const user=check(context);
-            
+            if(user.id===userId){
+     
+                await Status.findOneAndUpdate({user:userId},{statu:false})
+                const d=await Status.findOneAndUpdate({user:userId},{statu:false})
+                pubsub.publish('GET_STATUS',{
+                    getStatus:d
+                })
+                return d;
+            }
+
         }
         
     },
     Subscription:{
         getStatus:{
-            subscribe:(_,__,{pubsub})=>    pubsub.asyncIterator('GET_STATUS')
+            subscribe:()=>    pubsub.asyncIterator('GET_STATUS')
         },
     
     }

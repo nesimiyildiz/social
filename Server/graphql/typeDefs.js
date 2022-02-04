@@ -207,7 +207,7 @@ type Mutation{
     #Status
     setStatus(userId:ID!):Status!
     changeStatus(userId:ID!):Status!
-
+    logout(userId:String):Status!
 
 }
 
@@ -215,6 +215,6 @@ type Mutation{
 type Subscription{
     newPost:Post!,
     getStatus:Status!
-   
+    #logout(userId:String!):Status!
 }
 `
