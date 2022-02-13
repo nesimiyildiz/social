@@ -10,6 +10,7 @@ const ipResolvers=require('./ipAdresses');
 const viewResolvers=require('./views');
 const savedPostResolvers=require('./saveposts')
 const statusResolvers=require('./status')
+const radiosResolvers=require('./radios')
 module.exports={
     Post:{
         likesCount(parent){
@@ -43,7 +44,8 @@ module.exports={
         ...ipResolvers.Mutation,
         ...viewResolvers.Mutation,
         ...savedPostResolvers.Mutation,
-        ...statusResolvers.Mutation
+        ...statusResolvers.Mutation,
+        ...radiosResolvers.Mutation,
     },
     Subscription:{
         ...postResolvers.Subscription,

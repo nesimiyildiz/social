@@ -107,6 +107,15 @@ type Status{
     lastLogindate:String!,
     statu:Boolean
 }
+
+type Radios{
+    id:ID!,
+    radioName:String!,
+    radioPath:String!,
+    radioLogoPath:String!,
+    createdDate:String!,
+    username:String!
+}
 #Inputs
 input RegisterInput {
     username:String!,
@@ -122,6 +131,7 @@ input UserProfileInput {
     birthDate:String!,
     
 }
+
 
 #Queries
 type Query {
@@ -208,6 +218,10 @@ type Mutation{
     setStatus(userId:ID!):Status!
     changeStatus(userId:ID!):Status!
     logout(userId:String):Status!
+
+    #radios
+    addRadio(userId:ID!,radioName:String!,radioPath:String!,radioLogoPath:String!):Radios!
+    updateRadio(userId:ID!,radioID:ID!,radioName:String,radioPath:String,radioLogoPath:String):Radios!
 
 }
 
