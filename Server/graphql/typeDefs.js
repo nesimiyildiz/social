@@ -116,6 +116,26 @@ type Radios{
     createdDate:String!,
     username:String!
 }
+
+type ProductCategory{
+    id:ID!,
+    categoryName:String!,
+    createdDate:String!,
+    categorySubs:String,
+    username:String,
+
+}
+
+type Product{
+    id:ID!,
+    productName:String,
+    description:String,
+    productCategory:String,
+    productPhoto:String,
+    price:Float64Array,
+    createdDate:String,
+    username:String
+}
 #Inputs
 input RegisterInput {
     username:String!,
@@ -129,9 +149,15 @@ input UserProfileInput {
     surname:String!,
     phoneNumber:String!,
     birthDate:String!,
-    
 }
 
+input ProductInput{
+    productName:String,
+    description:String,
+    productCategory:String,
+    productPhoto:String,
+    price:Float64Array,
+}
 
 #Queries
 type Query {
@@ -167,6 +193,13 @@ type Query {
     #Radio
     getAllRadio:[Radios]
     getRadio(radioID:ID!):Radios!
+
+    #E-Commerce
+
+    #<---------!!!!!!!!!!------------>
+    #Product Category
+    getProductCategories:[ProductCategory!]
+
     
 },
 
@@ -228,6 +261,17 @@ type Mutation{
     addRadio(userId:ID!,radioName:String!,radioPath:String!,radioLogoPath:String!):Radios!
     updateRadio(userId:ID!,radioID:ID!,radioName:String,radioPath:String,radioLogoPath:String):Radios!
     deleteRadio(userId:ID!,radioID:ID!):String!
+
+    # E-Commerce
+    #<-----------!!!!!------------->
+    # ProductCategory
+    addProductCategory(userId:ID!,categoryName:String!,categorySubs:String):ProductCategory!
+    updateProductCategory(userId:ID!,categoryID:ID!,categoryName:String!,categorySubs:String):ProductCategory!
+    deleteProductCategory(userId:ID!,categoryID:ID!):String!
+
+    #Product
+
+    addProduct(userId:ID!,productInput:ProductInput):Product!
 }
 
 #Subscriptions
