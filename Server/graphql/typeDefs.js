@@ -132,7 +132,7 @@ type Product{
     description:String,
     productCategory:String,
     productPhoto:String,
-    price:Float64Array,
+    price:String,
     createdDate:String,
     username:String
 }
@@ -156,7 +156,7 @@ input ProductInput{
     description:String,
     productCategory:String,
     productPhoto:String,
-    price:Float64Array,
+    price:String
 }
 
 #Queries

@@ -4,7 +4,7 @@ const productSchema=new Schema({
     productName:String,
     description:String,
     productPhoto:String,
-    price:Float64Array,
+    price:Number,
     createdDate:String,
     username:String,
     user:{
