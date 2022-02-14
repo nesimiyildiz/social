@@ -30,7 +30,9 @@ module.exports={
         ...albumResolvers.Query,
         ...ipResolvers.Query,
         ...viewResolvers.Query,
-        ...savedPostResolvers.Query
+        ...savedPostResolvers.Query,
+        ...radiosResolvers.Query
+        
     },
     Mutation:{
         ...userResolvers.Mutation,

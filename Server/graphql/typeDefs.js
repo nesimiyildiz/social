@@ -163,6 +163,11 @@ type Query {
 
     #SavedPost
     getUserSavedPost(userId:ID):[SavedPost!]
+
+    #Radio
+    getAllRadio:[Radios]
+    getRadio(radioID:ID!):Radios!
+    
 },
 
 #Mutations
@@ -222,7 +227,7 @@ type Mutation{
     #radios
     addRadio(userId:ID!,radioName:String!,radioPath:String!,radioLogoPath:String!):Radios!
     updateRadio(userId:ID!,radioID:ID!,radioName:String,radioPath:String,radioLogoPath:String):Radios!
-
+    deleteRadio(userId:ID!,radioID:ID!):String!
 }
 
 #Subscriptions
