@@ -132,7 +132,8 @@ type Product{
     description:String,
     productCategory:String,
     productPhoto:String,
-    price:String,
+    price:Float,
+    stock:Float,
     createdDate:String,
     username:String
 }
@@ -156,8 +157,10 @@ input ProductInput{
     description:String,
     productCategory:String,
     productPhoto:String,
-    price:String
+    price:Float,
+    stock:Float,
 }
+
 
 #Queries
 type Query {
@@ -272,6 +275,8 @@ type Mutation{
     #Product
 
     addProduct(userId:ID!,productInput:ProductInput):Product!
+    updateProduct(userId:ID!,productID:ID!,productInput:ProductInput):Product
+    addStockProduct(userId:ID,productID:ID!,addst:Float):Product
 }
 
 #Subscriptions

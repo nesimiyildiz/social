@@ -7,6 +7,7 @@ const productSchema=new Schema({
     price:Number,
     createdDate:String,
     username:String,
+    stock:Number,
     user:{
         type:Schema.Types.ObjectId,ref:'users'
     },
