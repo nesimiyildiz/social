@@ -200,9 +200,13 @@ type Query {
     #E-Commerce
 
     #<---------!!!!!!!!!!------------>
-    #Product Category
+    #Category
     getProductCategories:[ProductCategory!]
 
+    #Product
+    getAllProduct:[Product!]
+    getProductByCategory(categoryID:ID!):[Product!]
+    getProductByName(productName:String!):[Product!]
     
 },
 
@@ -275,8 +279,10 @@ type Mutation{
     #Product
 
     addProduct(userId:ID!,productInput:ProductInput):Product!
-    updateProduct(userId:ID!,productID:ID!,productInput:ProductInput):Product
-    addStockProduct(userId:ID,productID:ID!,addst:Float):Product
+    updateProduct(userId:ID!,productID:ID!,productInput:ProductInput):Product!
+    addStockProduct(userId:ID,productID:ID!,addst:Float):Product!
+    extractStockProduct(userId:ID,productID:ID!,addst:Float):Product!
+    deleteProduct(userId:ID,productID:ID!):String!
 }
 
 #Subscriptions

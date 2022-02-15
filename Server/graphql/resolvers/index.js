@@ -34,7 +34,8 @@ module.exports={
         ...viewResolvers.Query,
         ...savedPostResolvers.Query,
         ...radiosResolvers.Query,
-        ...productCategoryResolvers.Query
+        ...productCategoryResolvers.Query,
+        ...productResolvers.Query
         
     },
     Mutation:{
