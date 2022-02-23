@@ -137,6 +137,21 @@ type Product{
     createdDate:String,
     username:String
 }
+
+type ProductBasket{
+    id:ID,
+    productId:ID!,
+    productName:String!,
+    howmany:Float,
+    price:Float,
+    productTotalPrice:Float,
+}
+
+type Basket{
+    id:ID!,
+    username:String,
+    products:[ProductBasket!]
+}
 #Inputs
 input RegisterInput {
     username:String!,
@@ -160,6 +175,7 @@ input ProductInput{
     price:Float,
     stock:Float,
 }
+
 
 
 #Queries
@@ -207,7 +223,10 @@ type Query {
     getAllProduct:[Product!]
     getProductByCategory(categoryID:ID!):[Product!]
     getProductByName(productName:String!):[Product!]
-    
+
+    #basket
+    getBasket(userId:ID,basketId:ID):Basket!
+    getBasketcount(userId:String!,basketId:String!,productsId:String):Float
 },
 
 #Mutations
@@ -283,6 +302,11 @@ type Mutation{
     addStockProduct(userId:ID,productID:ID!,addst:Float):Product!
     extractStockProduct(userId:ID,productID:ID!,addst:Float):Product!
     deleteProduct(userId:ID,productID:ID!):String!
+
+    #Basket
+    addBasket(userId:ID!,productId:ID,howmany:Float):Basket!
+    putBasket(userId:ID!,productsId:ID,basketId:ID,howsmany:Float):Basket!
+
 }
 
 #Subscriptions

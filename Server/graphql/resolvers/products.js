@@ -1,3 +1,5 @@
+
+  
 const { UserInputError, AuthenticationError } = require('apollo-server')
 const Product = require('../../models/Product')
 const check = require('../../utils/check-auth')
@@ -82,11 +84,12 @@ module.exports = {
           username: user.username,
           user: user.id,
         })
-        await newProduct.save()
-        return newProduct
+        await newProduct.save();
+        return newProduct;
       } else {
         throw new AuthenticationError('Yetkisiz Kullanıcı')
       }
+      
     },
     updateProduct: async (
       _,
@@ -128,6 +131,7 @@ module.exports = {
           throw new UserInputError('Ürün Bulunamadı')
         }
       }
+      
     },
      //! Stoka ekleme
     addStockProduct:async(_,{userId,productID,addst},context)=>{
@@ -198,7 +202,3 @@ module.exports = {
 
   },
 }
-
-
-
-

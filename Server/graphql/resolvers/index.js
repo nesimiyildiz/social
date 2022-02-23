@@ -12,13 +12,15 @@ const savedPostResolvers=require('./saveposts')
 const statusResolvers=require('./status')
 const radiosResolvers=require('./radios')
 const productCategoryResolvers=require('./productCategories')
-const productResolvers=require('./products');
+const productResolvers=require('./products')
+const basketResolvers=require('./baskets')
+
 module.exports={
     Post:{
         likesCount(parent){
          
             return parent.likes.length
-        },
+        }
         
     },
   
@@ -35,7 +37,9 @@ module.exports={
         ...savedPostResolvers.Query,
         ...radiosResolvers.Query,
         ...productCategoryResolvers.Query,
-        ...productResolvers.Query
+        ...productResolvers.Query,
+        ...basketResolvers.Query
+        
         
     },
     Mutation:{
@@ -53,7 +57,9 @@ module.exports={
         ...statusResolvers.Mutation,
         ...radiosResolvers.Mutation,
         ...productCategoryResolvers.Mutation,
-        ...productResolvers.Mutation
+        ...productResolvers.Mutation,
+        ...basketResolvers.Mutation,
+       
     },
     Subscription:{
         ...postResolvers.Subscription,
