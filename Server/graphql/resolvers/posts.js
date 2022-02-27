@@ -78,7 +78,7 @@ module.exports={
 
             const post=await Post.findById(postId);
           
-           console.log(filter);
+           
             if(post){
                 if(post.likes.find(b=>b.username===username)){
 

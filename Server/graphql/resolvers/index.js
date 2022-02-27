@@ -14,7 +14,8 @@ const radiosResolvers=require('./radios')
 const productCategoryResolvers=require('./productCategories')
 const productResolvers=require('./products')
 const basketResolvers=require('./baskets')
-
+const storyResolvers=require('./stories')
+const hashTagResolvers=require('./hashtags')
 module.exports={
     Post:{
         likesCount(parent){
@@ -36,11 +37,14 @@ module.exports={
         ...viewResolvers.Query,
         ...savedPostResolvers.Query,
         ...radiosResolvers.Query,
+        ...storyResolvers.Query,
+        ...hashTagResolvers.Query,
+
+        //E-Commerce
         ...productCategoryResolvers.Query,
         ...productResolvers.Query,
-        ...basketResolvers.Query
-        
-        
+        ...basketResolvers.Query,
+     
     },
     Mutation:{
         ...userResolvers.Mutation,
@@ -56,6 +60,10 @@ module.exports={
         ...savedPostResolvers.Mutation,
         ...statusResolvers.Mutation,
         ...radiosResolvers.Mutation,
+        ...storyResolvers.Mutation,
+        ...hashTagResolvers.Mutation,
+
+        // E-commerce
         ...productCategoryResolvers.Mutation,
         ...productResolvers.Mutation,
         ...basketResolvers.Mutation,

@@ -36,7 +36,13 @@ type Media{
     type:String!,
     createdDate:String!,
 }
-
+type Mediahash{
+    id:ID!,
+    url:String!,
+    types:String!,
+    createdDate:String!,
+    username:String
+}
 type Post {
     id:ID!,
     description:String!,
@@ -152,6 +158,26 @@ type Basket{
     username:String,
     products:[ProductBasket!]
 }
+type Story{
+    id:ID!,
+    storyPath:String!,
+    storyDesc:String!,
+    createdDate:String!
+}
+type Stories{
+    id:ID!,
+    username:String!
+    stories:[Story!],
+    createdDate:String!
+    user:String
+}
+
+type HashTag{
+    id:ID!
+    title:String!
+    media:[Mediahash]
+}
+
 #Inputs
 input RegisterInput {
     username:String!,
@@ -213,6 +239,12 @@ type Query {
     getAllRadio:[Radios]
     getRadio(radioID:ID!):Radios!
 
+    #Story
+    getAllStories(userId:ID!):[Stories!]
+
+    #Hashtag
+    getHashTagByName(title:String):HashTag!
+    getAllHashTag:[HashTag!]
     #E-Commerce
 
     #<---------!!!!!!!!!!------------>
@@ -287,6 +319,18 @@ type Mutation{
     addRadio(userId:ID!,radioName:String!,radioPath:String!,radioLogoPath:String!):Radios!
     updateRadio(userId:ID!,radioID:ID!,radioName:String,radioPath:String,radioLogoPath:String):Radios!
     deleteRadio(userId:ID!,radioID:ID!):String!
+
+    #Story
+
+    addStroy(userId:ID!,storyPath:String!,storyDesc:String!):Stories!
+    addStories(userId:ID,storyPath:String!,storyDesc:String!,storyId:ID!):Stories!
+    deleteStory(userId:ID!):String!
+    deleteOneStory(userId:ID!,storyId:ID!,storiesId:ID):Stories!
+
+    #hashTag
+    createHashtag(userId:ID!,mediasId:ID,title:String!):HashTag!
+
+
 
     # E-Commerce
     #<-----------!!!!!------------->
