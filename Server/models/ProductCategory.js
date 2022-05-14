@@ -1,5 +1,5 @@
 const {model,Schema}=require('mongoose')
-
+//!E-Commerce Canceled
 const productCategorySchema=new Schema({
     categoryName:String,
     categorySubs:String,

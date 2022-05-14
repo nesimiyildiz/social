@@ -18,6 +18,7 @@ module.exports={
                 throw new Error(error)
             }
         },
+    
         async getPostsMedia(_,{mediaId}){
             const post=await Post.find({media:mediaId});
             if(post){
