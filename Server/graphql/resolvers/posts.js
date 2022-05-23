@@ -38,6 +38,7 @@ module.exports={
                 }
             } catch (error) {
                 throw new Error(error)
+                
             }
         }
     },
@@ -45,13 +46,19 @@ module.exports={
         async createPost(_,{description},context){
             const user=AuthControl(context);
            
+            if(description.trim()===""){
+                    throw new UserInputError('Boş Geçilemez')
+            }
+           
             const newPost=new Post({
                 description,
                 user:user.id,
                 username:user.username,
                 createdDate:new Date().toISOString(),
             })
-     
+
+           
+            
             const post=await newPost.save();
             context.pubsub.publish('NEW_POST',{
                 newPost:post
@@ -89,10 +96,11 @@ module.exports={
                         username,
                         createdDate:new Date().toISOString()
                     })
+                    console.log(post);
                 }
 
-                // await post.save();
-                // return post;
+                await post.save();
+                return post;
             }else{
                 throw new UserInputError('Post Bulunamadı')
             }
